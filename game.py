@@ -1,6 +1,5 @@
 import random
 
-# inicializa a pontuação da rodada
 pontuacao_jogador = 0
 pontuacao_computador = 0
 
@@ -16,18 +15,18 @@ def jogo():
             print("Escolha inválida. Por favor, escolha entre pedra, papel ou tesoura.")
             continue
 
-        computador = random.choice(['pedra', 'papel', 'tesoura']) # escolha aleatória do computador
+        computador = random.choice(['pedra', 'papel', 'tesoura']) 
 
         print('-' * 25)
-        print(f'Você escolheu: {usuario.capitalize()}') # mostra escolha do user
-        print(f'Eu escolhi: {computador.capitalize()}') # mostra escolha do computador
+        print(f'Você escolheu: {usuario.capitalize()}') 
+        print(f'Eu escolhi: {computador.capitalize()}') 
 
-        if usuario == computador: # verifica se houve empate
+        if usuario == computador: 
             print('Nós empatamos!')
-        elif vitoria(usuario, computador): # verifica se houve vitoria do jogador e adiciona na pontuação
+        elif vitoria(usuario, computador):
             print('Você ganhou!')
             pontuacao_jogador += 1
-        else: # verifica se houve vitoria do computador e adiciona na pontuação
+        else: 
             print('Você perdeu!')
             pontuacao_computador += 1
 
