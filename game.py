@@ -5,7 +5,7 @@ from colorama import Fore, Style
 pontuacao_jogador = 0
 pontuacao_computador = 0
 
-decorative_line = Fore.YELLOW + '─' * 25 + Style.RESET_ALL
+decorative_line = Fore.YELLOW + '-' * 25 + Style.RESET_ALL
 
 def jogo():
     global pontuacao_jogador, pontuacao_computador
@@ -27,7 +27,7 @@ def jogo():
         print(f'Eu escolhi: {Fore.GREEN}{computador.capitalize()}{Style.RESET_ALL}') # mostra escolha do computador
 
         if usuario == computador: # verifica se houve empate
-            print(Fore.CYAN + 'Nós empatamos!' + Style.RESET_ALL)
+            print(Fore.BLUE + 'Nós empatamos!' + Style.RESET_ALL)
         elif vitoria(usuario, computador): # verifica se houve vitoria do jogador e adiciona na pontuação
             print(Fore.GREEN + 'Você ganhou!' + Style.RESET_ALL)
             pontuacao_jogador += 1
@@ -41,9 +41,11 @@ def jogo():
         print(f'Pontuação - Computador: {Fore.RED}{pontuacao_computador}{Style.RESET_ALL}')
 
         jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
-        if jogar_novamente != 's':
-            break
-
+        if jogar_novamente not in ['s','n']:
+            print(Fore.RED + "Escolha inválida. O jogo irá resetar caso não responda corretamente!" + Style.RESET_ALL)
+            jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
+            continue
+            
 def vitoria(jogador, adversario):
     if (jogador == 'pedra' and adversario == 'tesoura') \
     or (jogador == 'tesoura' and adversario == 'papel') \
