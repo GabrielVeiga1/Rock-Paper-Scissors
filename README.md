@@ -14,6 +14,6 @@ Este é um jogo simples de Pedra, Papel e Tesoura implementado em Python, onde v
    
 ## Recursos
 
-Implementação simples e eficaz do jogo de Pedra, Papel e Tesoura.
-Interface de linha de comando fácil de usar.
-Acompanhamento da pontuação do jogador e do computador.
+1. Implementação simples e eficaz do jogo de Pedra, Papel e Tesoura.
+2. Interface de linha de comando fácil de usar.
+3. Acompanhamento da pontuação do jogador e do computador.
