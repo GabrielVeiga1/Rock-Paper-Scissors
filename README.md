@@ -1,19 +1,34 @@
-# Jogo de Pedra, Papel e Tesoura em Python
+# Pedra, Papel ou Tesoura - Jogo com Tkinter 🎮
 
-Este é um jogo simples de Pedra, Papel e Tesoura implementado em Python, onde você pode desafiar o computador e acompanhar sua pontuação.
+Este é um projeto simples de Pedra, Papel ou Tesoura criado com a biblioteca `Tkinter` do Python. Ideal para iniciantes que estão aprendendo lógica de programação, estruturas condicionais e interfaces gráficas.
 
-## Como Jogar
+## 💡 Sobre o Projeto
 
-1. Clone ou faça o download deste repositório para o seu ambiente local.
-2. Certifique-se de ter o Python instalado em seu sistema.
-3. Execute o arquivo `jogo_pedra_papel_tesoura.py` utilizando o seguinte comando no terminal:
+- O jogador escolhe entre **Pedra**, **Papel** ou **Tesoura**.
+- O computador escolhe aleatoriamente uma opção.
+- O resultado da rodada é exibido com uma cor diferente:
+  - 🟢 **Verde** para vitória do jogador.
+  - 🔴 **Vermelho** para derrota.
+  - 🔵 **Azul** para empate.
+- A pontuação de ambos é atualizada a cada jogada.
+- Possui um botão para **zerar o jogo** e começar do zero.
 
-1. Siga as instruções exibidas no terminal para escolher entre pedra, papel ou tesoura.
-2. Após cada rodada, o resultado será exibido, mostrando quem ganhou a rodada e a pontuação atual.
-3. Você pode jogar quantas vezes desejar. Quando estiver pronto para encerrar o jogo, basta responder "n" quando perguntado se deseja jogar novamente.
-   
-## Recursos
+## 📷 Interface
 
-1. Implementação simples e eficaz do jogo de Pedra, Papel e Tesoura.
-2. Interface de linha de comando fácil de usar.
-3. Acompanhamento da pontuação do jogador e do computador.
+A interface foi feita com `Tkinter`, com botões alinhados lado a lado para tornar o jogo mais intuitivo.
+
+## 🧠 Lógica
+
+A lógica do jogo usa condições simples para verificar quem ganhou:
+- Pedra ganha de Tesoura
+- Tesoura ganha de Papel
+- Papel ganha de Pedra
+
+## ▶️ Como rodar
+
+1. Certifique-se de ter o Python instalado (versão 3.6 ou superior).
+2. Clone ou baixe este repositório.
+3. Execute o script:
+
+```bash
+
