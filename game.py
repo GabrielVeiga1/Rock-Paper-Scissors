@@ -1,56 +1,67 @@
+import tkinter as tk
 import random
-
-from colorama import Fore, Style
 
 pontuacao_jogador = 0
 pontuacao_computador = 0
 
-decorative_line = Fore.YELLOW + '-' * 25 + Style.RESET_ALL
+# CONDIÇÃO
+def vitoria(jogador, adversario):
+    return (jogador == 'pedra' and adversario == 'tesoura') or \
+           (jogador == 'tesoura' and adversario == 'papel') or \
+           (jogador == 'papel' and adversario == 'pedra')
 
-def jogo():
+# GAME
+def jogar(escolha_usuario):
     global pontuacao_jogador, pontuacao_computador
 
-    while True:
-        print(decorative_line)
-        print('{:^27}'.format('*' * 13 + Style.RESET_ALL))
-        print('{:^24}'.format('Vamos jogar?'))  # Centralizando o texto "Vamos jogar?"
-        print('{:^27}'.format('*' * 13 + Style.RESET_ALL))
-        print(decorative_line)
-        usuario = input("Escolha pedra, papel, tesoura: ").lower()
-        if usuario not in ['pedra', 'papel', 'tesoura']:
-            print(Fore.RED + "Escolha inválida. Por favor, escolha entre pedra, papel ou tesoura." + Style.RESET_ALL)
-            continue
+    computador = random.choice(['pedra', 'papel', 'tesoura'])
 
-        computador = random.choice(['pedra', 'papel', 'tesoura']) 
+    if escolha_usuario == computador:
+        resultado = "Empate!"
+        cor_resultado = "gray"
+    elif vitoria(escolha_usuario, computador):
+        resultado = "Você ganhou!"
+        cor_resultado = "green"
+        pontuacao_jogador += 1
+    else:
+        resultado = "Você perdeu!"
+        cor_resultado = "red"
+        pontuacao_computador += 1
 
-        print(f'Você escolheu: {Fore.GREEN}{usuario.capitalize()}{Style.RESET_ALL}') # mostra escolha do user
-        print(f'Eu escolhi: {Fore.GREEN}{computador.capitalize()}{Style.RESET_ALL}') # mostra escolha do computador
+    label_resultado["text"] = f"Você: {escolha_usuario}\nComputador: {computador}\n{resultado}"
+    label_resultado["fg"] = cor_resultado
+    label_pontuacao["text"] = f"Jogador: {pontuacao_jogador} | Computador: {pontuacao_computador}"
 
-        if usuario == computador: # verifica se houve empate
-            print(Fore.BLUE + 'Nós empatamos!' + Style.RESET_ALL)
-        elif vitoria(usuario, computador): # verifica se houve vitoria do jogador e adiciona na pontuação
-            print(Fore.GREEN + 'Você ganhou!' + Style.RESET_ALL)
-            pontuacao_jogador += 1
-        else: # verifica se houve vitoria do computador e adiciona na pontuação
-            print(Fore.RED + 'Você perdeu!' + Style.RESET_ALL)
-            pontuacao_computador += 1
 
-        print(decorative_line) # linha separação
+def zerar_jogo():
+    global pontuacao_jogador, pontuacao_computador
+    pontuacao_jogador = 0
+    pontuacao_computador = 0
+    label_resultado["text"] = ""
+    label_pontuacao["text"] = "Jogador: 0 | Computador: 0"
 
-        print(f'Pontuação - Jogador: {Fore.GREEN}{pontuacao_jogador}{Style.RESET_ALL}')
-        print(f'Pontuação - Computador: {Fore.RED}{pontuacao_computador}{Style.RESET_ALL}')
+# JAN
+janela = tk.Tk()
+janela.title("Jogo: Pedra, Papel e Tesoura")
+janela.geometry("300x330")
 
-        jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
-        if jogar_novamente not in ['s','n']:
-            print(Fore.RED + "Escolha inválida. O jogo irá resetar caso não responda corretamente!" + Style.RESET_ALL)
-            jogar_novamente = input("Deseja jogar novamente? (s/n): ").lower()
-            continue
-            
-def vitoria(jogador, adversario):
-    if (jogador == 'pedra' and adversario == 'tesoura') \
-    or (jogador == 'tesoura' and adversario == 'papel') \
-    or (jogador == 'papel' and adversario == 'pedra'):
-        return True
-    return False
 
-jogo()
+tk.Label(janela, text="Escolha uma opção:").pack(pady=10)
+
+# BOTÕES
+frame_botoes = tk.Frame(janela)
+frame_botoes.pack(pady=5)
+tk.Button(frame_botoes, text="Pedra", width=10, command=lambda: jogar("pedra")).pack(side="left", padx=5)
+tk.Button(frame_botoes, text="Papel", width=10, command=lambda: jogar("papel")).pack(side="left", padx=5)
+tk.Button(frame_botoes, text="Tesoura", width=10, command=lambda: jogar("tesoura")).pack(side="left", padx=5)
+
+# PLACAR
+label_resultado = tk.Label(janela, text="", pady=10)
+label_resultado.pack()
+label_pontuacao = tk.Label(janela, text="Jogador: 0 | Computador: 0")
+label_pontuacao.pack()
+
+# RESET
+tk.Button(janela, text="Zerar Jogo", command=zerar_jogo).pack(pady=10)
+
+janela.mainloop()
