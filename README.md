@@ -31,4 +31,4 @@ A lógica do jogo usa condições simples para verificar quem ganhou:
 3. Execute o script:
 
 ```bash
-
+python pedra_papel_tesoura.py
